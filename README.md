@@ -20,6 +20,9 @@ cobra-cli init --config .cobra.yaml
 
 We won't be building binaries ourselves either, the will be done by [goreleaser](https://goreleaser.com/install)
 
+Be sure to have it [installed](https://goreleaser.com/quick-start/), also [generate](https://github.com/settings/tokens/new?scopes=repo,write:packages) a github token and put it
+in `GITHUB_TOKEN` variable
+
 ## License
 
 MIT
