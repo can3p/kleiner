@@ -18,6 +18,8 @@ Local cobra config was used using:
 cobra-cli init --config .cobra.yaml
 ```
 
+We won't be building binaries ourselves either, the will be done by [goreleaser](https://goreleaser.com/install)
+
 ## License
 
 MIT
