@@ -54,6 +54,3 @@ archives:
     files: [wintun.dll]
     wrap_in_directory: false
     format: zip
-
-release:
-  disable: true
