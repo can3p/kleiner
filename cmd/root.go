@@ -25,6 +25,7 @@ import (
 	"os"
 
 	"github.com/can3p/kleiner/generated/cmd"
+	"github.com/can3p/kleiner/generated/published"
 	"github.com/spf13/cobra"
 )
 
@@ -49,6 +50,7 @@ func Execute() {
 
 func init() {
 	cmd.Setup(rootCmd)
+	published.MaybeNotifyAboutNewVersion()
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.

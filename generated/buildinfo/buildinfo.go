@@ -65,6 +65,7 @@ type info struct {
 	OS           string
 	Architecture string
 	Environment  string
+	GithubRepo   string
 }
 
 func (i info) String() string {
@@ -78,6 +79,9 @@ func (i info) String() string {
 	if i.BranchName != "" {
 		res += fmt.Sprintf(" BranchName: %s", i.BranchName)
 	}
+
+	res += fmt.Sprintf(" Github Repo: https://github.com/%s", i.GithubRepo)
+
 	return res
 }
 
@@ -91,6 +95,7 @@ func Info() info {
 		OS:           OS(),
 		Architecture: Arch(),
 		Environment:  Environment(),
+		GithubRepo:   GithubRepo(),
 	}
 }
 
@@ -112,6 +117,12 @@ func Version() version.Version {
 
 func BuildTime() time.Time {
 	return cachedBuildTime
+}
+
+// it's generated only once, no need to have it
+// as a parameter
+func GithubRepo() string {
+	return "can3p/kleiner"
 }
 
 func Commit() string {
