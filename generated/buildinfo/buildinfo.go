@@ -125,6 +125,10 @@ func GithubRepo() string {
 	return "can3p/kleiner"
 }
 
+func ProjectName() string {
+	return "kleiner"
+}
+
 func Commit() string {
 	info, _ := debug.ReadBuildInfo()
 	var rev string = "<none>"

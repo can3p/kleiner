@@ -6,6 +6,7 @@ import (
 	"github.com/can3p/kleiner/generated/buildinfo"
 	"github.com/can3p/kleiner/generated/internal/version"
 	"github.com/go-resty/resty/v2"
+	"github.com/google/go-github/v57/github"
 )
 
 func getAPIRelaseUrl() string {
@@ -15,9 +16,7 @@ func getAPIRelaseUrl() string {
 }
 
 func GetLastPublishedVersion() (*version.Version, error) {
-	var releaseObject struct {
-		TagName string `json:"tag_name"`
-	}
+	var releaseObject github.RepositoryRelease
 
 	client := resty.New()
 
@@ -27,7 +26,7 @@ func GetLastPublishedVersion() (*version.Version, error) {
 		return nil, err
 	}
 
-	parsed, err := version.Parse(releaseObject.TagName)
+	parsed, err := version.Parse(*releaseObject.TagName)
 
 	if err != nil {
 		return nil, err
