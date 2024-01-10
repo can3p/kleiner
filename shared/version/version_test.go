@@ -1,6 +1,7 @@
 package version
 
 // from https://github.com/superfly/flyctl/blob/0dff860a878e2b280f2f53ce2aaf21ce39d800c2/internal/version/version_test.go
+// This code is subject to Apache-2.0 license as per flyctl project
 
 import (
 	"encoding/json"

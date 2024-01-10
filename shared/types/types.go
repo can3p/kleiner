@@ -7,6 +7,9 @@ import (
 	"github.com/can3p/kleiner/shared/version"
 )
 
+// The struct has been borrowed from flyctl project - https://github.com/superfly/flyctl/blob/0dff860a878e2b280f2f53ce2aaf21ce39d800c2/internal/buildinfo/buildinfo.go
+// This code in the file is subject to Apache-2.0 license as per flyctl project
+
 type BuildInfo struct {
 	Name         string
 	Version      version.Version

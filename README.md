@@ -23,6 +23,11 @@ We won't be building binaries ourselves either, the will be done by [goreleaser]
 Be sure to have it [installed](https://goreleaser.com/quick-start/), also [generate](https://github.com/settings/tokens/new?scopes=repo,write:packages) a github token and put it
 in `GITHUB_TOKEN` variable
 
+## Inspiration
+
+The code is inspired a lot and uses parts of the [flyctl](https://github.com/superfly/flyctl) code. The files
+with the borrowings mention this explicitly.
+
 ## License
 
 MIT
