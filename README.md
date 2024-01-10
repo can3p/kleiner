@@ -30,4 +30,4 @@ with the borrowings mention this explicitly.
 
 ## License
 
-MIT
+Apache 2.0
