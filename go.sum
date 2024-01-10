@@ -1,5 +1,7 @@
 aead.dev/minisign v0.2.0 h1:kAWrq/hBRu4AARY6AlciO83xhNnW9UaC8YipS2uhLPk=
 aead.dev/minisign v0.2.0/go.mod h1:zdq6LdSd9TbuSxchxwhpA9zEb9YXcVGoE8JakuiGaIQ=
+github.com/can3p/go-scarf v0.0.0-20240110163951-2d2faaed9fc4 h1:KrbvtDMtu9QA7Bb4bqEJzrGgfRUd3r1JaCy0CY3Ooa0=
+github.com/can3p/go-scarf v0.0.0-20240110163951-2d2faaed9fc4/go.mod h1:s9bLq1TjMr4F4iDXlF024F4qraB+djCfTadlfkC4veM=
 github.com/cpuguy83/go-md2man/v2 v2.0.3/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=

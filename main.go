@@ -21,7 +21,9 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/can3p/kleiner/cmd"
+import (
+	"github.com/can3p/kleiner/cmd"
+)
 
 func main() {
 	cmd.Execute()
