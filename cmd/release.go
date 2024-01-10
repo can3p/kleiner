@@ -14,6 +14,8 @@ import (
 )
 
 func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
+	var tagComment string
+
 	var releaseCmd = &cobra.Command{
 		Use:   "release",
 		Short: "Create a new release",
@@ -52,7 +54,7 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 			vversion := "v" + newVersion.String()
 
 			cmdChain := [][]string{
-				{"git", "tag", "-a", vversion},
+				{"git", "tag", "-a", vversion, "-m", tagComment},
 				{"git", "push", "origin", "", vversion},
 				{"goreleaser", "release", "--clean"},
 			}
@@ -68,6 +70,9 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 			return nil
 		},
 	}
+
+	releaseCmd.Flags().StringVar(&tagComment, "tag-comment", "", "a message for the new tag")
+	_ = releaseCmd.MarkFlagRequired("tag-comment")
 
 	return releaseCmd
 } // releaseCmd represents the release command
