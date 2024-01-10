@@ -94,6 +94,7 @@ The idea is to have the simplest setup possible, local setup fits this scenario
 * Windows support
 * Dependencies check (goreleaser, go)
 * Make it possible to generate scaffolding for other git hostings
+* Much better validation and error checking
 
 ## License
 
