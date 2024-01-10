@@ -7,9 +7,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/can3p/kleiner/internal/project"
 	"github.com/can3p/kleiner/shared/published"
 	"github.com/can3p/kleiner/shared/types"
+	"github.com/can3p/kleiner/shared/version"
 	"github.com/erikgeiser/promptkit/confirmation"
+	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
 
@@ -28,16 +31,33 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 		* goreleaser release --clean`,
 
 		RunE: func(cmd *cobra.Command, args []string) error {
-			version, err := published.GetLastPublishedVersion(buildinfo)
+			p, err := project.ResolveProjectFromCwd()
 
 			if err != nil {
-				return err
+				return errors.Wrapf(err, "failed to resolve project")
 			}
 
-			newVersion := version.Increment(time.Now())
+			var newVersion version.Version
+			var lastVersionStr string
+
+			lastVersion, err := published.GetLastPublishedVersion(p.GithubRepo)
+
+			if err == published.ErrNoReleaseFound {
+				newVersion = version.Version{
+					Major: 0,
+					Minor: 0,
+					Patch: 1,
+				}
+				lastVersionStr = "not found"
+			} else if err != nil {
+				return err
+			} else {
+				newVersion = lastVersion.Increment(time.Now())
+				lastVersionStr = lastVersion.String()
+			}
 
 			input := confirmation.New(
-				fmt.Sprintf("Do you want to releaser version [%s]? Last version is %s.", newVersion, version),
+				fmt.Sprintf("Do you want to releaser version [%s]? Last version is %s.", newVersion, lastVersionStr),
 				confirmation.No)
 
 			ready, err := input.RunPrompt()

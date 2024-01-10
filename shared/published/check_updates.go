@@ -15,7 +15,7 @@ func MaybeNotifyAboutNewVersion(buildinfo *types.BuildInfo) {
 	}
 
 	version := buildinfo.Version
-	upstream, err := GetLastPublishedVersion(buildinfo)
+	upstream, err := GetLastPublishedVersion(buildinfo.GithubRepo)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to check for new version: %s", err.Error())

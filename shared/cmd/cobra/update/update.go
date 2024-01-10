@@ -28,7 +28,7 @@ func New(buildinfo *types.BuildInfo) *cobra.Command {
 }
 
 func run(buildinfo *types.BuildInfo, versionOverride string) (err error) {
-	upstreamVersion, err := published.GetLastPublishedVersion(buildinfo)
+	upstreamVersion, err := published.GetLastPublishedVersion(buildinfo.GithubRepo)
 
 	if err != nil {
 		return err

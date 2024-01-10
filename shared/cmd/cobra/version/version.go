@@ -28,7 +28,7 @@ func run(buildinfo *types.BuildInfo) (err error) {
 		return
 	}
 
-	upstreamVersion, err := published.GetLastPublishedVersion(buildinfo)
+	upstreamVersion, err := published.GetLastPublishedVersion(buildinfo.GithubRepo)
 
 	if err != nil {
 		return err
