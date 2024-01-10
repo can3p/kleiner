@@ -1,14 +1,14 @@
 package buildinfo
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
 	"runtime/debug"
 	"time"
 
-	"github.com/can3p/kleiner/generated/internal/version"
+	"github.com/can3p/kleiner/shared/types"
+	"github.com/can3p/kleiner/shared/version"
 	"github.com/pkg/errors"
 )
 
@@ -56,37 +56,8 @@ func Name() string {
 	return cachedName
 }
 
-type info struct {
-	Name         string
-	Version      version.Version
-	Commit       string
-	BranchName   string
-	BuildDate    time.Time
-	OS           string
-	Architecture string
-	Environment  string
-	GithubRepo   string
-}
-
-func (i info) String() string {
-	res := fmt.Sprintf("%s v%s %s/%s Commit: %s BuildDate: %s",
-		i.Name,
-		i.Version,
-		i.OS,
-		i.Architecture,
-		i.Commit,
-		i.BuildDate.Format(time.RFC3339))
-	if i.BranchName != "" {
-		res += fmt.Sprintf(" BranchName: %s", i.BranchName)
-	}
-
-	res += fmt.Sprintf(" Github Repo: https://github.com/%s", i.GithubRepo)
-
-	return res
-}
-
-func Info() info {
-	return info{
+func Info() *types.BuildInfo {
+	return &types.BuildInfo{
 		Name:         Name(),
 		Version:      Version(),
 		Commit:       Commit(),
@@ -94,8 +65,9 @@ func Info() info {
 		BuildDate:    BuildTime(),
 		OS:           OS(),
 		Architecture: Arch(),
-		Environment:  Environment(),
+		Environment:  environment,
 		GithubRepo:   GithubRepo(),
+		ProjectName:  ProjectName(),
 	}
 }
 

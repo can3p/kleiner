@@ -5,7 +5,7 @@ package buildinfo
 import (
 	"time"
 
-	"github.com/can3p/kleiner/generated/internal/version"
+	"github.com/can3p/kleiner/shared/version"
 )
 
 var (

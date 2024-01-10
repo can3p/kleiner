@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"runtime"
 
+	"github.com/can3p/kleiner/shared/types"
 	"github.com/go-resty/resty/v2"
 	"github.com/minio/selfupdate"
 	"github.com/pkg/errors"
@@ -16,16 +17,16 @@ import (
 	"golang.org/x/text/language"
 )
 
-func compileDownloadURL(projectName string, githubRepo string, tag string) string {
+func compileDownloadURL(buildinfo *types.BuildInfo, tag string) string {
 	return fmt.Sprintf(
 		"https://github.com/%s/releases/download/v%s/%s",
-		githubRepo, tag, compileArtifactName(projectName))
+		buildinfo.GithubRepo, tag, compileArtifactName(buildinfo))
 }
 
-func compileArtifactName(projectName string) string {
-	arch := runtime.GOARCH
+func compileArtifactName(buildinfo *types.BuildInfo) string {
+	arch := buildinfo.Architecture
 
-	switch runtime.GOARCH {
+	switch arch {
 	case "amd64":
 		arch = "x86_64"
 	case "386":
@@ -34,11 +35,11 @@ func compileArtifactName(projectName string) string {
 		arch = "armv64"
 	}
 
-	return fmt.Sprintf("%s_%s_%s.tar.gz", projectName, cases.Title(language.English).String(runtime.GOOS), arch)
+	return fmt.Sprintf("%s_%s_%s.tar.gz", buildinfo.ProjectName, cases.Title(language.English).String(runtime.GOOS), arch)
 }
 
-func DownloadAndReplaceBinary(projectName string, githubRepo string, tag string) error {
-	b, err := downloadBinary(projectName, githubRepo, tag)
+func DownloadAndReplaceBinary(buildinfo *types.BuildInfo, tag string) error {
+	b, err := downloadBinary(buildinfo, tag)
 
 	if err != nil {
 		return err
@@ -52,9 +53,9 @@ func DownloadAndReplaceBinary(projectName string, githubRepo string, tag string)
 	return nil
 }
 
-func downloadBinary(projectName string, githubRepo string, tag string) ([]byte, error) {
-	url := compileDownloadURL(projectName, githubRepo, tag)
-	fileToExtract := projectName
+func downloadBinary(buildinfo *types.BuildInfo, tag string) ([]byte, error) {
+	url := compileDownloadURL(buildinfo, tag)
+	fileToExtract := buildinfo.ProjectName
 
 	client := resty.New()
 

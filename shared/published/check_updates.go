@@ -4,18 +4,18 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/can3p/kleiner/generated/buildinfo"
+	"github.com/can3p/kleiner/shared/types"
 	"github.com/fatih/color"
 )
 
-func MaybeNotifyAboutNewVersion() {
+func MaybeNotifyAboutNewVersion(buildinfo *types.BuildInfo) {
 	// we never notify about new version in case of dev builds
 	if buildinfo.IsDev() {
 		return
 	}
 
-	version := buildinfo.Version()
-	upstream, err := GetLastPublishedVersion()
+	version := buildinfo.Version
+	upstream, err := GetLastPublishedVersion(buildinfo)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to check for new version: %s", err.Error())

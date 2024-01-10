@@ -3,22 +3,22 @@ package update
 import (
 	"fmt"
 
-	"github.com/can3p/kleiner/generated/buildinfo"
-	"github.com/can3p/kleiner/generated/internal/version"
-	"github.com/can3p/kleiner/generated/published"
+	"github.com/can3p/kleiner/shared/published"
+	"github.com/can3p/kleiner/shared/types"
+	"github.com/can3p/kleiner/shared/version"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
 
 // New initializes and returns a new version Command.
-func New() *cobra.Command {
+func New(buildinfo *types.BuildInfo) *cobra.Command {
 	var versionOverride string
 
 	var updateCmd = &cobra.Command{
 		Use:   "update",
 		Short: "Update to the last update",
 		RunE: func(ccmd *cobra.Command, args []string) error {
-			return run(versionOverride)
+			return run(buildinfo, versionOverride)
 		},
 	}
 
@@ -27,8 +27,8 @@ func New() *cobra.Command {
 	return updateCmd
 }
 
-func run(versionOverride string) (err error) {
-	upstreamVersion, err := published.GetLastPublishedVersion()
+func run(buildinfo *types.BuildInfo, versionOverride string) (err error) {
+	upstreamVersion, err := published.GetLastPublishedVersion(buildinfo)
 
 	if err != nil {
 		return err
@@ -53,7 +53,7 @@ func run(versionOverride string) (err error) {
 		versionToUpdateTo = &v
 	}
 
-	currentVersion := buildinfo.Version()
+	currentVersion := buildinfo.Version
 
 	if versionToUpdateTo.Equal(currentVersion) {
 		fmt.Printf("The cli is already on the version [%s], no changes will be made", versionToUpdateTo)
@@ -62,7 +62,7 @@ func run(versionOverride string) (err error) {
 
 	fmt.Printf("Will attempt to update to version %s\n", versionToUpdateTo)
 
-	err = published.DownloadAndReplaceBinary(buildinfo.ProjectName(), buildinfo.GithubRepo(), versionToUpdateTo.String())
+	err = published.DownloadAndReplaceBinary(buildinfo, versionToUpdateTo.String())
 
 	if err == nil {
 		fmt.Println("Update successful!")
