@@ -23,6 +23,35 @@ We won't be building binaries ourselves either, the will be done by [goreleaser]
 Be sure to have it [installed](https://goreleaser.com/quick-start/), also [generate](https://github.com/settings/tokens/new?scopes=repo,write:packages) a github token and put it
 in `GITHUB_TOKEN` variable
 
+## Installation
+
+curl -L  | sh
+
+## Installation
+
+## Install Script
+
+Download `kleiner` and install into a local bin directory.
+
+#### MacOS, Linux, WSL
+
+Latest version:
+
+```bash
+curl -L https://raw.githubusercontent.com/can3p/kleiner/main/generated/install.sh | sh
+```
+
+Specific version:
+
+```bash
+curl -L https://raw.githubusercontent.com/can3p/kleiner/main/generated/install.sh | sh -s 0.0.4
+```
+
+## Manual download
+
+Get the archive that fits your system from the [Releases](https://github.com/can3p/kleiner/releases) page and
+extract the binary into a folder that is mentioned in your `$PATH` variable.
+
 ## Inspiration
 
 The code is inspired a lot and uses parts of the [flyctl](https://github.com/superfly/flyctl) code. The files
