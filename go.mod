@@ -3,6 +3,7 @@ module github.com/can3p/kleiner
 go 1.21.0
 
 require (
+	github.com/can3p/go-scarf v0.0.0-20240110163951-2d2faaed9fc4
 	github.com/fatih/color v1.16.0
 	github.com/go-resty/resty/v2 v2.11.0
 	github.com/google/go-github/v57 v57.0.0
@@ -16,7 +17,6 @@ require (
 
 require (
 	aead.dev/minisign v0.2.0 // indirect
-	github.com/can3p/go-scarf v0.0.0-20240110163951-2d2faaed9fc4 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
