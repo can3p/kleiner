@@ -55,7 +55,7 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 
 			cmdChain := [][]string{
 				{"git", "tag", "-a", vversion, "-m", tagComment},
-				{"git", "push", "origin", "", vversion},
+				{"git", "push", "origin", vversion},
 				{"goreleaser", "release", "--clean"},
 			}
 
