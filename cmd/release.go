@@ -91,7 +91,7 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 		},
 	}
 
-	releaseCmd.Flags().StringVar(&tagComment, "tag-comment", "", "a message for the new tag")
+	releaseCmd.Flags().StringVarP(&tagComment, "tag-comment", "m", "", "a message for the new tag")
 	_ = releaseCmd.MarkFlagRequired("tag-comment")
 
 	return releaseCmd
