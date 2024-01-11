@@ -19,6 +19,10 @@ Dependencies:
 * go to build the project
 * [`GITHUB_TOKEN`](https://github.com/settings/tokens/new?scopes=repo,write:packages) in the shell environment
 
+## Demo
+
+[![Watch the video](https://img.youtube.com/vi/KnNHOusv4wA/maxresdefault.jpg)](https://youtu.be/KnNHOusv4wA)
+
 ## Installation
 
 ### Install Script
