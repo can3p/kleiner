@@ -47,6 +47,21 @@ The script will install the binary into `$HOME/bin` folder by default, you can o
 Get the archive that fits your system from the [Releases](https://github.com/can3p/kleiner/releases) page and
 extract the binary into a folder that is mentioned in your `$PATH` variable.
 
+## Quick start
+
+* Install kleiner and it's dependencies
+* Create a new repo on github
+* Clone it to make sure you have origin set up
+* `go mod init <username>/<repo>`
+* `kleiner generate`
+* `go mod tidy`
+* Commit and push
+* Make sure that you have `$GITHUB_TOKEN` in the environment
+* `kleiner release -tag-comment "first release"`
+* That's it!
+
+For every next release just work on you changes, push them and run `kleiner release` again to publish a new version
+
 ## Inspiration
 
 The code is inspired a lot and uses parts of the [flyctl](https://github.com/superfly/flyctl) code. The files
