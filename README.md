@@ -115,6 +115,10 @@ The idea is to have the simplest setup possible, local setup fits this scenario
 * Make it possible to generate scaffolding for other git hostings
 * Much better validation and error checking
 
+## Projects using kleiner
+
+* Kleiner itself! Scaffolding was based on initial project code and releases are done with kleiner
+
 ## License
 
 Apache 2.0
