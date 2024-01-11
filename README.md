@@ -21,7 +21,7 @@ Dependencies:
 
 ## Demo
 
-[![Watch the video](https://img.youtube.com/vi/KnNHOusv4wA/maxresdefault.jpg)](https://youtu.be/KnNHOusv4wA)
+[![Watch the video](https://img.youtube.com/vi/KnNHOusv4wA/0.jpg)](https://youtu.be/KnNHOusv4wA)
 
 ## Installation
 
