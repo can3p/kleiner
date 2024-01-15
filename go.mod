@@ -4,6 +4,7 @@ go 1.21.0
 
 require (
 	github.com/can3p/go-scarf v0.0.0-20240110163951-2d2faaed9fc4
+	github.com/edwarnicke/exechelper v1.0.3
 	github.com/erikgeiser/promptkit v0.9.0
 	github.com/fatih/color v1.16.0
 	github.com/go-resty/resty/v2 v2.11.0
@@ -25,7 +26,6 @@ require (
 	github.com/charmbracelet/lipgloss v0.7.1 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/edwarnicke/exechelper v1.0.3 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
