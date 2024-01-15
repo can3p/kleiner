@@ -18,6 +18,7 @@ import (
 
 func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 	var tagComment string
+	var versionOverride string
 
 	var releaseCmd = &cobra.Command{
 		Use:   "release",
@@ -54,6 +55,17 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 			} else {
 				newVersion = lastVersion.Increment(time.Now())
 				lastVersionStr = lastVersion.String()
+			}
+
+			if versionOverride != "" {
+				v, err := version.Parse(versionOverride)
+
+				if err != nil {
+					return err
+				}
+
+				fmt.Printf("Using [%s] as a new version\n", v.String())
+				newVersion = v
 			}
 
 			input := confirmation.New(
@@ -122,6 +134,7 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 	}
 
 	releaseCmd.Flags().StringVarP(&tagComment, "tag-comment", "m", "", "a message for the new tag")
+	releaseCmd.Flags().StringVarP(&versionOverride, "version", "v", "", "specify the version explicitly")
 	_ = releaseCmd.MarkFlagRequired("tag-comment")
 
 	return releaseCmd
