@@ -57,7 +57,7 @@ func ReleaseCommand(buildinfo *types.BuildInfo) *cobra.Command {
 			}
 
 			input := confirmation.New(
-				fmt.Sprintf("Do you want to releaser version [%s]? Last version is %s.", newVersion, lastVersionStr),
+				fmt.Sprintf("Do you want to release version [%s]? Last version is %s.", newVersion, lastVersionStr),
 				confirmation.No)
 
 			ready, err := input.RunPrompt()
