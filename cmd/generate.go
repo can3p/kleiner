@@ -20,10 +20,15 @@ func GenerateCommand() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			projectName := cmd.Flag("project-name").Value.String()
 			githubRepo := cmd.Flag("github-repo").Value.String()
+			gitBranch := cmd.Flag("git-branch").Value.String()
 			out := cmd.Flag("out").Value.String()
 
 			if githubRepo == "" {
 				return errors.Errorf("Github repo is missing")
+			}
+
+			if gitBranch == "" {
+				return errors.Errorf("Git branch is missing")
 			}
 
 			s := scaffolder.New()
@@ -35,6 +40,7 @@ func GenerateCommand() *cobra.Command {
 			return s.Scaffold(kleinerTemplate.Template, scaffolder.ScaffoldData{
 				"ProjectName": projectName,
 				"GithubRepo":  githubRepo,
+				"GitBranch":   gitBranch,
 			})
 		},
 	}
@@ -56,8 +62,11 @@ func GenerateCommand() *cobra.Command {
 		log.Println(err)
 	}
 
+	var gitBranch string = "main"
+
 	generateCmd.Flags().String("project-name", projectName, "Project and binary name, current folder name by default")
 	generateCmd.Flags().String("github-repo", githubRepo, "Github repo in form user/repo")
+	generateCmd.Flags().String("git-branch", gitBranch, "Git branch to refer in the readme")
 	generateCmd.Flags().String("out", path, "Output folder")
 	generateCmd.Flags().BoolVarP(&test, "test", "", false, "Do not write anything, write everything to stdout")
 
