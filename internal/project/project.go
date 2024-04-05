@@ -2,6 +2,7 @@ package project
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -13,6 +14,7 @@ import (
 type Project struct {
 	Name       string
 	GithubRepo string
+	GitBranch  string
 }
 
 func ResolveProjectFromCwd() (*Project, error) {
@@ -26,12 +28,19 @@ func ResolveProjectFromCwd() (*Project, error) {
 	currentRepo, err := resolveGitRepo()
 
 	if err != nil {
-		return nil, errors.Wrapf(err, "Failed to resolve github repo")
+		fmt.Fprintln(os.Stderr, "Failed to resolve github repo, it will have to be specified manually")
+	}
+
+	currentBranch, err := resolveGitBranch()
+
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Failed to resolve current git branch, it will have to be specified manually")
 	}
 
 	return &Project{
 		Name:       cwdFolder,
 		GithubRepo: currentRepo,
+		GitBranch:  currentBranch,
 	}, nil
 }
 
@@ -53,4 +62,22 @@ func resolveGitRepo() (string, error) {
 	repo = strings.TrimSuffix(repo, ".git")
 
 	return repo, nil
+}
+
+func resolveGitBranch() (string, error) {
+	cmd := exec.Command("git", "branch", "--no-color", "--show-current")
+
+	var out bytes.Buffer
+	cmd.Stdout = &out
+
+	err := cmd.Run()
+
+	if err != nil {
+		return "", err
+	}
+
+	branch := out.String()
+	branch = strings.TrimSpace(branch)
+
+	return branch, nil
 }

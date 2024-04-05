@@ -49,20 +49,20 @@ func GenerateCommand() *cobra.Command {
 
 	var projectName string
 	var githubRepo string
+	var gitBranch string
 
 	if err != nil {
 		log.Println(err)
 	} else {
 		projectName = p.Name
 		githubRepo = p.GithubRepo
+		gitBranch = p.GitBranch
 	}
 
 	path, err := os.Getwd()
 	if err != nil {
 		log.Println(err)
 	}
-
-	var gitBranch string = "main"
 
 	generateCmd.Flags().String("project-name", projectName, "Project and binary name, current folder name by default")
 	generateCmd.Flags().String("github-repo", githubRepo, "Github repo in form user/repo")
