@@ -58,7 +58,7 @@ func resolveGitRepo() (string, error) {
 
 	repo := out.String()
 	repo = strings.TrimSpace(repo)
-	repo = strings.TrimPrefix(repo, "git@github.com:")
+	repo = strings.TrimPrefix(repo, "git@github.com:/")
 	repo = strings.TrimSuffix(repo, ".git")
 
 	return repo, nil
