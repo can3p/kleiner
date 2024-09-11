@@ -13,7 +13,7 @@ import (
 var ErrNoReleaseFound = errors.Errorf("No release found")
 
 func getAPIRelaseUrl(repo string) string {
-	return fmt.Sprintf("https://api.github.com/repos/%s/releases/latest", repo)
+	return fmt.Sprintf("https://api.github.com/repos%s/releases/latest", repo)
 }
 
 func GetLastPublishedVersion(githubRepo string) (*version.Version, error) {
