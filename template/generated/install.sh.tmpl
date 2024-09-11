@@ -30,7 +30,7 @@ main() {
 	mkdir -p "$bin_dir"
 	mkdir -p "$tmp_dir"
 
-	function cleanup {
+	cleanup() {
 		rm -rf $tmp_dir
 	}
 	# be a good citizen and clean up after yourself
