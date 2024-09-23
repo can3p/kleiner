@@ -60,6 +60,9 @@ func resolveGitRepo() (string, error) {
 	repo = strings.TrimSpace(repo)
 	repo = strings.TrimPrefix(repo, "git@github.com:")
 	repo = strings.TrimSuffix(repo, ".git")
+	if repo[0] == byte('/') { // we are in happy ASCII land
+		repo = repo[1:] // remove leading slash if it exists
+	}
 
 	return repo, nil
 }
